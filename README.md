@@ -1,19 +1,22 @@
 # Institute of Home Economics Voicebox
 
-Anonymous complaint & suggestion box for the Institute of Home Economics
-(University of Delhi) Students' Union.
+Anonymous complaint & suggestion box for Institute of Home Economics.
+Static frontend in `public/`, serverless API in `api/`, helpers in `lib/`,
+data in Upstash Redis (one database shared by all college sites).
 
-Static frontend in `public/`, three serverless API routes in `api/`, shared
-auth helper in `lib/`, and data stored in Upstash Redis. The frontend is a
-single HTML file — no build step, no framework, no external JS dependencies.
+| Setting | Value |
+|---|---|
+| Tracking-code prefix | `IHE-XXXXXX` |
+| Redis namespace | `du:ihe:voicebox` |
+| Repo / Vercel project | `institute-of-home-economics-opress` |
 
-## Deploy in 5 minutes
+## Deploy
+1. Push this folder to GitHub (`https://github.com/anubhavbajpaibusiness/institute-of-home-economics-opress.git`) and import it in Vercel.
+2. Environment variables:
+   - `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN` — identical on every college project
+   - `ADMIN_PASSWORD` — unique per college (use a long one)
+   - `REDIS_NAMESPACE` — optional override, defaults to `du:ihe:voicebox`. Never reuse another college's value.
 
-1. **Push to GitHub**
-   ```bash
-   git init
-   git add .
-   git commit -m "ihe-voicebox"
-   git branch -M main
-   git remote add origin <your-repo-url>
-   git push -u origin main
+## Office bearers
+Edit the `TEAM` array in `public/index.html`. Put photos in `public/images/team/`
+and set `photo: "/images/team/president.jpg"`. An empty `TEAM` shows a "coming soon" card.
